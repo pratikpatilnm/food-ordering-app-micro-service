@@ -34,6 +34,8 @@ create table addresses(
     createdTimestamp timestamp default CURRENT_TIMESTAMP
 );
 
+use catelog_db;
+
 -- categories
 create table category(
     id integer primary key auto_increment,
@@ -57,6 +59,7 @@ create table foodItem(
     createdTimestamp timestamp default CURRENT_TIMESTAMP
 );
 
+use cart_db;
 -- cart
 create table cart(
     id integer primary key auto_increment,
@@ -67,6 +70,7 @@ create table cart(
     createdTimestamp timestamp default CURRENT_TIMESTAMP
 );
 
+use order_db;
 -- order master
 create table orderMaster(
     id integer primary key auto_increment,

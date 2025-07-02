@@ -22,10 +22,7 @@ app.use(express.urlencoded())
 // extract the token to authorize the user
 app.use((request, response, next) => {
     // check if the token is required
-    if (request.url == '/user/register' || request.url == '/user/login') {
-        // token is not required
-        return next()
-    } else {
+    
         // ins the middleware to check token
         console.log('in the middlewar to check token')
         // read the token from request headers
@@ -58,26 +55,12 @@ app.use((request, response, next) => {
         } catch (ex) {
             response.send(utils.createError('invalid toen'))
         }
-
-
-    }
-
-
 })
 
 // add the routes
-const userRouter = require('./routes/users')
-const userAddress = require('./routes/address')
-const categoryRouter = require('./routes/categories')
-const foodItemRouter = require('./routes/foodItems') 
-const cartRouter = require('./routes/cart')
 const orderRouter = require('./routes/orders')
 
-app.use('/user', userRouter)
-app.use('/address', userAddress)
-app.use('/category', categoryRouter)
-app.use('/food-item', foodItemRouter)
-app.use('/cart', cartRouter)
+
 app.use('/order',orderRouter )
 
 // start the server

@@ -47,6 +47,9 @@
     - GET /cart/                : DONE
     - PUT /cart/:id             : DONE
     - DELETE /cart/:id          : DONE
+
+- chat
+
 # npm modules
 - express
     - used to implement REST APIs.
@@ -72,3 +75,4 @@
 - cache-service: 4004
 - notification-service: 4005
 - payment-service: 4006
+- chat-service: 4007

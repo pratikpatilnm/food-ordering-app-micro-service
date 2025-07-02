@@ -1,7 +1,7 @@
 const config = {
     email: {
         user: 'pratikpro0075@gmail.com',
-        password: 'oixcsqwjqbkebbrw',
+        password: 'gvecqdizwjcoiugp',
         enabled: false
     },
     // secreatkey generator: https://randomkeygen.com/

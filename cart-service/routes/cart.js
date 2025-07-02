@@ -6,7 +6,7 @@ const db = require('../database')
 const utils = require('../utils')
 
 router.get('/', (request, response) => {
-    const statement = `SELECT c.id, c.foodItemId, c.quantity, c.price, f.title, f.image from cart c, foodItem f where userid = ? and c.foodItemId = f.id`
+    const statement = `SELECT c.id, c.foodItemId, c.quantity, c.price from cart c where c.userid = ?`
     db.pool.execute(statement, [request['userInfo']['id']], (error, result) => {
         response.send(utils.createResult(error, result))
     })
@@ -14,23 +14,25 @@ router.get('/', (request, response) => {
 })
 
 router.post('/', (request, response) => {
-    const { foodItemId, quantity } = request.body
-    const priceQuery = `SELECT price FROM foodItem WHERE id = ?`;
-    db.pool.query(priceQuery, [foodItemId], (error, result) => {
-        if (error) {
-            response.send(utils.createError(error))
-        }
-        else if (result.length === 0) {
-            response.send(utils.createError(`Food item not found`))
-        }
-        else {
-            const price = result[0].price;
-            const statement = `INSERT INTO cart(userId, foodItemId, quantity, price) VALUES (?, ?, ?, ?)`
-            db.pool.query(statement, [request['userInfo']['id'], foodItemId, quantity, price], (error, result) => {
+    const { foodItemId, quantity, price } = request.body
+    // const priceQuery = `SELECT price FROM foodItem WHERE id = ?`;
+    const statement = `INSERT INTO cart(userId, foodItemId, quantity, price) VALUES (?, ?, ?, ?)`
+    db.pool.query(statement, [request['userInfo']['id'], foodItemId, quantity, price], (error, result) => {
                 response.send(utils.createResult(error, result))
             })
-        }
-    })
+    // db.pool.query(priceQuery, [foodItemId], (error, result) => {
+    //     if (error) {
+    //         response.send(utils.createError(error))
+    //     }
+    //     else if (result.length === 0) {
+    //         response.send(utils.createError(`Food item not found`))
+    //     }
+    //     else {
+    //         // const price = result[0].price;
+            
+            
+    //     }
+    // })
 })
 
 router.put('/:id', (request, response) => {

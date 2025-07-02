@@ -5,7 +5,7 @@ const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
   password: 'root',
-  database: 'food_ordering_app_db',
+  database: 'order_db',
   waitForConnections: true,
   connectionLimit: 10,
   maxIdle: 10, // max idle connections, the default value is the same as `connectionLimit`
